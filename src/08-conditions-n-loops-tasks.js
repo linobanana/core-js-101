@@ -162,30 +162,20 @@ function doRectanglesOverlap(rect1, rect2) {
   };
   let compareX = false;
   let compareY = false;
-  for (const key in vertex) {
+  const key = Object.keys(vertex);
+  for (let i = 0; i < key.length; i += 1) {
     compareX = false;
     compareY = false;
-    for (const coords in vertex[key]) {
-      switch (coords) {
-        case 'x':
-          if (vertex[key][coords] >= exampleRect.x1 && vertex[key][coords] <= exampleRect.x2) {
-            compareX = true;
-          }
-          break;
-        case 'y':
-          if (vertex[key][coords] >= exampleRect.y1 && vertex[key][coords] <= exampleRect.y2) {
-            compareY = true;
-          }
-          break;
-        default:
-          break;
-      }
+    if (vertex[key[i]].x >= exampleRect.x1 && vertex[key[i]].x <= exampleRect.x2) {
+      compareX = true;
+    }
+    if (vertex[key[i]].y >= exampleRect.y1 && vertex[key[i]].y <= exampleRect.y2) {
+      compareY = true;
     }
     if (compareX && compareY) { return true; }
   }
   return false;
 }
-
 
 /**
  * Returns true, if point lies inside the circle, otherwise false.
